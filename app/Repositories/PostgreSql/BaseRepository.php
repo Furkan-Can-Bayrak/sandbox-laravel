@@ -6,7 +6,6 @@ use App\Repositories\Contracts\BaseRepositoryInterface;
 use App\Repositories\Criteria\QueryParameters;
 use Fukibay\StarterPack\Traits\AppliesQueryCriteria;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
