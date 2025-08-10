@@ -1,66 +1,199 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Fukibay Laravel Starter Pack
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-## About Laravel
+**Fukibay Laravel Starter Pack**, Repository ve Service katmanlarını kullanarak temiz mimariyle proje geliştirenler için tasarlanmış, akıllı bir kod üretim (scaffolding) paketidir. Tekrarlayan kurulum ve kodlama adımlarını otomatize ederek, doğrudan projenizin iş mantığına odaklanmanızı sağlar.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🎯 Felsefemiz
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Bu paket, "örtük" varsayımlar yerine **açık ve net** komutları tercih eder. Amacımız, geliştirme sürecinizi hızlandırırken, kodun kontrolünün daima sizde kalmasını sağlamaktır. Bu sayede, projeniz ne kadar büyürse büyüsün, ürettiğimiz kodun güvenilir ve tahmin edilebilir olmasını garanti ederiz.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Temel Özellikler
 
-## Learning Laravel
+-   **Hızlı Kurulum:** Tek komutla (`fukibay:install`) tüm temel arayüz, sınıf ve trait'leri projenize kurun.
+-   **Akıllı Kod Üretimi:** `make` komutları ile saniyeler içinde Repository ve Service sınıfları oluşturun.
+-   **🧠 Akıllı Soft Deletes Entegrasyonu:**
+    -   Repository oluştururken modelinizdeki `SoftDeletes` trait'ini **otomatik olarak algılar**.
+    -   Service oluştururken, ilgili repository'nin soft-delete destekli olup olmadığını **anlar** ve gerekli `ProxiesSoftDeletes` trait'ini sınıfa **otomatik olarak ekler**.
+-   **Güçlü ve Esnek Filtreleme:** `QueryParameters` DTO'su sayesinde karmaşık `where`, `relation`, `orderBy`, `limit`, `exists` gibi sorguları zincirlemeden, tek bir nesne ile temiz bir şekilde yapın.
+-   **Temiz Mimari:** Repository ve Service katmanlarını standartlaştırarak kodunuzun daha okunabilir ve yönetilebilir olmasını sağlar.
+-   **Dinamik Sürücü Desteği:** Repository'lerinizi `PostgreSql`, `MySql` gibi veritabanı sürücülerine özel alt klasörlerde oluşturarak projenizi düzenli tutar.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📦 Kurulum
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1.  Composer ile paketi projenize ekleyin:
+    ```bash
+    composer require fukibay/laravel-starter-pack
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2.  Paketin yapılandırma dosyasını projenizin `config` klasörüne yayınlayın.
+    ```bash
+    php artisan vendor:publish --tag="fukibay-config"
+    ```
+    Bu komut, `config/fukibay-starter-pack.php` dosyasını oluşturacaktır.
 
-## Laravel Sponsors
+3.  Paketin temel iskelet dosyalarını (`BaseRepository`, arayüzler vb.) projenize kurun.
+    ```bash
+    php artisan fukibay:install
+    ```
+    Dosyalar, yapılandırmanıza uygun olarak `app/` dizini altına yerleştirilecektir.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## ⚙️ Yapılandırma
 
-### Premium Partners
+`config/fukibay-starter-pack.php` dosyasını açarak, repository'lerinizin hangi veritabanı sürücüsü klasörü altında oluşturulacağını belirleyebilirsiniz.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```php
+// config/fukibay-starter-pack.php
+return [
+    'repository_driver' => 'PostgreSql', // Burayı 'MySql', 'MongoDb' vb. olarak değiştirebilirsiniz.
+];
+```
 
-## Contributing
+## 🛠️ Kullanım Akışı
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Adım 1: Repository Oluşturma
 
-## Code of Conduct
+Bir Eloquent Modeli'ne bağlı yeni bir repository ve arayüzü oluşturmak için `fukibay:make:repository` komutunu kullanın.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan fukibay:make:repository UserRepository --model=User
+```
 
-## Security Vulnerabilities
+Bu komut iki dosya oluşturur:
+1.  **Arayüz:** `app/Repositories/Contracts/UserRepositoryInterface.php`
+2.  **Sınıf:** `app/Repositories/PostgreSql/UserRepository.php` (yapılandırmanıza göre)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+> **Neden `--model` parametresi zorunlu?**
+> Model adını repository adından tahmin etmek (`UserRepository` -> `User`) basit durumlarda işe yarasa da, karmaşık isimlendirmelerde ve farklı namespace yapılarında hatalara yol açabilir. `--model` parametresini zorunlu kılarak, hangi modelin kullanılacağını **açıkça belirtmenizi** sağlıyor ve böylece %100 güvenilir ve hatasız kod üretiyoruz. Bu, paketin temel felsefesidir.
 
-## License
+**Soft Deletes Algılaması:**
+Eğer `User` modeliniz `Illuminate\Database\Eloquent\SoftDeletes` trait'ini kullanıyorsa, oluşturulan `UserRepository` sınıfı ve arayüzü bunu **otomatik olarak algılayıp** `SoftDeletesRepositoryInterface`'i ve ilgili trait'i uygulayacaktır.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Adım 2: Service Oluşturma (Akıllı Kısım)
+
+İlgili repository'yi kullanan bir servis sınıfı oluşturun.
+
+```bash
+php artisan fukibay:make:service UserService
+```
+
+**Paketin zekası burada devreye giriyor:**
+-   Komut, `UserService` için `UserRepositoryInterface`'in gerektiğini anlar.
+-   Daha sonra bu arayüzün `SoftDeletesRepositoryInterface`'i genişletip genişletmediğini kontrol eder.
+-   Eğer cevap **evet** ise, `ProxiesSoftDeletes` trait'ini servis sınıfına **otomatik olarak ekler!**
+
+**Örnek Çıktı (Eğer User modeli SoftDeletes kullanıyorsa):**
+
+```php
+// app/Services/UserService.php (Otomatik oluşturulan kod)
+namespace App\Services;
+
+use App\Repositories\Contracts\UserRepositoryInterface;
+use Fukibay\StarterPack\Traits\ProxiesSoftDeletes; // OTOMATİK EKLENDİ!
+
+class UserService extends BaseService
+{
+    use ProxiesSoftDeletes; // OTOMATİK EKLENDİ!
+
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        parent::__construct($userRepository);
+    }
+}
+```
+Bu sayede, soft-delete metotlarını kullanmak için herhangi bir ek işlem yapmanıza gerek kalmaz.
+
+### Adım 3: Service Provider ile Bağlama
+
+Oluşturduğunuz arayüzleri ve sınıfları Laravel'in Service Container'ına tanıtın.
+
+```php
+// app/Providers/AppServiceProvider.php
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\PostgreSql\UserRepository;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        $this->app->bind(
+            UserRepositoryInterface::class,
+            UserRepository::class
+        );
+    }
+    // ...
+}
+```
+
+### Adım 4: Gelişmiş Sorgular (`QueryParameters`)
+
+Paketin en güçlü yanlarından biri, `QueryParameters` DTO'su ile karmaşık ve okunabilir sorgular yapabilmektir.
+
+**Örnek Senaryo:** Onaylanmış (`status=approved`), puanı 80'den yüksek (`score > 80`), profili (`profile` ilişkisi) olan ve en yeniye göre sıralanmış kullanıcıları getirelim.
+
+```php
+// Bir Controller veya başka bir Service içinde...
+use App\Services\UserService;
+use App\Repositories\Criteria\QueryParameters;
+
+class UserController extends Controller
+{
+    public function __construct(private UserService $userService) {}
+
+    public function index()
+    {
+        $criteria = new QueryParameters(
+            filters: [
+                'status'     => 'approved',
+                'score'      => ['>', 80],
+                'exists'     => ['profile'], // 'profile' ilişkisi olanlar
+            ],
+            relations: ['profile', 'posts'], // Eager loading
+            orderBy: ['created_at' => 'desc']
+        );
+
+        $users = $this->userService->get($criteria);
+
+        // ...
+    }
+}
+```
+
+**Desteklenen Filtre Operatörleri:**
+`=`, `!=`, `>`, `>=`, `<`, `<=`, `like`, `date`, `in`, `between`, `null`, `not_null`, `exists` (ilişki var mı?), `not_exists` (ilişki yok mu?). Ayrıca dot notasyonu ile ilişkisel alanlarda da filtreleme yapabilirsiniz (`profile.city` => 'Ankara').
+
+### Adım 5: Soft Deletes Metotlarını Kullanma
+
+`ProxiesSoftDeletes` trait'i sayesinde servis katmanı üzerinden tüm soft-delete işlemlerini rahatça yapabilirsiniz.
+
+```php
+// UserController.php
+
+// Hem aktif hem silinmiş kullanıcıları listele
+$allUsers = $this->userService->withTrashed();
+
+// Sadece silinmiş kullanıcıları sayfalı olarak listele
+$trashedUsers = $this->userService->onlyTrashedPaginate();
+
+// Silinmiş bir kullanıcıyı geri yükle
+$this->userService->restore($userId);
+
+// Bir kullanıcıyı kalıcı olarak sil
+$this->userService->forceDelete($userId);
+```
+
+## 🎯 Komutların Özeti
+
+| Komut | Açıklama |
+|---|---|
+| `fukibay:ping` | Paketin doğru kurulup kurulmadığını test eder. |
+| `fukibay:install` | Gerekli temel arayüz, trait ve sınıfları `app` dizinine kurar. |
+| `fukibay:make:repository <Ad> --model=<Model>` | Yeni bir repository sınıfı ve arayüzü oluşturur. |
+| `fukibay:make:service <Ad>` | Yeni bir servis sınıfı oluşturur ve ilgili repository'yi akıllıca enjekte eder. |
+
+---
+
+Bu paket, **Furkan Can Bayrak** tarafından geliştirilmiştir. Katkıda bulunmak isterseniz, lütfen GitHub reposu üzerinden pull request gönderin.````
